@@ -18,19 +18,18 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"                  #支持的平台和版本号
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.6" }         #存储库的git地址，以及tag值
      
-  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration"  
-
-  s.vendored_frameworks = 'AlipaySDK.framework' 
-
-  s.public_header_files = "AliPay-Extend/*.h","AliPay-Extend/**/*.h"
-
-  s.source_files =  "AliPay-Extend/*.{h,m}",   "AliPay-Extend/**/*.{h,m}" 
-
-  s.libraries =  'z','c++'
+  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration"    
+  s.source_files        = 'AliPay-Extend/openssl/**/*.h','AliPay-Extend/**/*.{h,m}'
+  s.public_header_files = 'AliPay-Extend/openssl/**/*.h',"AliPay-Extend/**/*.h"
+  s.header_dir          = 'openssl'
+  s.preserve_paths      = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
+  s.vendored_libraries  = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
+  s.vendored_frameworks = 'AlipaySDK.framework'    
+  s.libraries = 'ssl', 'crypto', 'z','c++'
   s.resources = "AlipaySDK.bundle" 
   s.requires_arc = true #是否支持ARC
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"} 
-  s.dependency "OpenSSL-Universal", "~> 1.0.2.13"
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}  
 
 end
-   
+  
+ 
