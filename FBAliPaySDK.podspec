@@ -17,12 +17,13 @@ Pod::Spec.new do |s|
   s.author             = { "robin2005" => "57048685@qq.com" }  #作者
   s.platform     = :ios, "7.0"                  #支持的平台和版本号
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.2" }         #存储库的git地址，以及tag值
-  s.source_files  =  "**/*.{h,m}" #需要托管的源代码路径
-  s.preserve_paths = "*.a"
-  s.frameworks = "UIKit", "CFNetwork", "CoreGraphics", "SystemConfiguration", "Foundation"
+  s.source_files  = "**/*.{h,m}" #需要托管的源代码路径
+  s.preserve_paths = "*.a"  
+  s.frameworks = "UIKit", "CoreTelephony", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration", "Foundation"
+  s.libraries = 'z', 'c++'
   s.resource  = "Alixpay.bundle"
   s.requires_arc = true #是否支持ARC
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/AliPaySDK/" }
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK" }
   #s.dependency "Masonry", "~> 1.0.0"    #所依赖的第三方库，没有就不用写
 
 end

@@ -8,7 +8,7 @@
 
 #import "openssl_wrapper.h"
 
-#include "rsa.h"
+#import "rsa.h"
 #include "pem.h"
 #include "md5.h"
 #include "bio.h"
