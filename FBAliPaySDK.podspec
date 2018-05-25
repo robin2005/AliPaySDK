@@ -9,26 +9,42 @@
 Pod::Spec.new do |s|
 
   s.name         = "FBAliPaySDK"    #存储库名称
-  s.version      = "1.0.4"      #版本号，与tag值一致
+  s.version      = "1.0.5"      #版本号，与tag值一致
   s.summary      = "AliPay SDK for iOS"  #简介
   s.description  = "AliPay 移动支付接口智能 SDK 版 for iOS"  #描述
   s.homepage     = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
   s.license      = { :type => "MIT", :file => "LICENSE" }   #开源协议
   s.author             = { "robin2005" => "57048685@qq.com" }  #作者
   s.platform     = :ios, "7.0"                  #支持的平台和版本号
-  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.4" }         #存储库的git地址，以及tag值
-  s.source_files  = "**/*.{h,m}" #需要托管的源代码路径  
-  s.public_header_files = 'openssl/*.h','RSA/*.h','Util/*.h','json/*.h','*.h'#公开头文件地址 
-  s.vendored_frameworks = "AlipaySDK.framework" 
-  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
-  s.preserve_paths      = 'libcrypto.a', 'libssl.a'
-  s.vendored_libraries  = 'libcrypto.a', 'libssl.a'
+  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.5" }         #存储库的git地址，以及tag值
+     
+  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration"  
+
+  s.vendored_frameworks = 'AlipaySDK.framework'
+
+  s.vendored_libraries = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
+
+  s.public_header_files = "AlipaySDK.framework/Headers/**/*.h", "openssl/*.h", "Util/*.h"
+
+  s.subspec "AliPay-Extend" do |ae|
+    ae.source_files = "AliPay-Extend"
+    ae.subspec "Util" do |u|
+      u.source_files = "AliPay-Extend/Util"
+    end 
+    ae.subspec "Order" do |o|
+      o.source_files = "AliPay-Extend/Order"
+    end
+  end
+
+  s.subspec "openssl" do |ssl|
+    ssl.source_files = "openssl"
+    ssl.header_dir = "openssl"
+  end 
 
   s.libraries = 'ssl', 'crypto', 'z','c++'
   s.resource  = "Alixpay.bundle"
   s.requires_arc = true #是否支持ARC
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}
-  #s.dependency "Masonry", "~> 1.0.0"    #所依赖的第三方库，没有就不用写
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"} 
 
 end
   
