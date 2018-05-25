@@ -20,21 +20,17 @@ Pod::Spec.new do |s|
      
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration"  
 
-  s.vendored_frameworks = 'AlipaySDK.framework'
+  s.vendored_frameworks = 'AlipaySDK.framework' 
 
-  s.vendored_libraries = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
+  s.public_header_files = "AliPay-Extend/*.h","AliPay-Extend/**/*.h"
 
-  s.public_header_files = "openssl/*.h","AliPay-Extend/*.h","AliPay-Extend/**/*.h"
+  s.source_files =  "AliPay-Extend/*.{h,m}",   "AliPay-Extend/**/*.{h,m}" 
 
-  s.source_files = "openssl/*.{h,m}",  "AliPay-Extend/*.{h,m}",   "AliPay-Extend/**/*.{h,m}"
-
-  s.header_dir = "openssl"
-
-  s.libraries = 'ssl', 'crypto', 'z','c++'
+  s.libraries =  'z','c++'
   s.resources = "AlipaySDK.bundle" 
   s.requires_arc = true #是否支持ARC
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"} 
-
-end
+  s.dependency "OpenSSL-Universal", "~> 1.0.2.13"
   
- 
+end
+   

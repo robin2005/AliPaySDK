@@ -6,13 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "openssl_wrapper.h"
-
-#import "rsa.h"
-#include "pem.h"
-#include "md5.h"
-#include "bio.h"
-#include "sha.h"
+#import "openssl_wrapper.h" 
+#import <openssl/rsa.h>
+#import <openssl/pem.h>
+#import <openssl/md5.h>
+#import <openssl/bio.h>
+#import <openssl/sha.h>
 #include <string.h>
 
 
