@@ -17,8 +17,9 @@ Pod::Spec.new do |s|
   s.author             = { "robin2005" => "57048685@qq.com" }  #作者
   s.platform     = :ios, "7.0"                  #支持的平台和版本号
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.3" }         #存储库的git地址，以及tag值
-  s.source_files  = "**/*.{h,m}" #需要托管的源代码路径 
-  s.public_header_files = '**/*.h' #公开头文件地址 
+  s.source_files  = "**/*.{h,m}" #需要托管的源代码路径  
+  s.public_header_files = 'openssl/*.h','RSA/*.h','Util/*.h','json/*.h','*.h'#公开头文件地址 
+  s.vendored_frameworks = "AlipaySDK.framework" 
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.preserve_paths      = 'libcrypto.a', 'libssl.a'
   s.vendored_libraries  = 'libcrypto.a', 'libssl.a'
@@ -26,7 +27,7 @@ Pod::Spec.new do |s|
   s.libraries = 'ssl', 'crypto', 'z','c++'
   s.resource  = "Alixpay.bundle"
   s.requires_arc = true #是否支持ARC
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK","Library_SEARCH_PATHS" => "$(inherited) $(PODS_ROOT)/FBAliPaySDK" }
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}
   #s.dependency "Masonry", "~> 1.0.0"    #所依赖的第三方库，没有就不用写
 
 end
