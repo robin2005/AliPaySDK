@@ -24,16 +24,13 @@ Pod::Spec.new do |s|
 
   s.vendored_libraries = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
 
-  s.public_header_files = "AlipaySDK.framework/Headers/**/*.h", "openssl/*.h", "Util/*.h"
+  s.public_header_files = "AlipaySDK.framework/Headers/**/*.h", "openssl/*.h"
 
-  s.subspec "AliPay-Extend" do |ae|
+  s.subspec "AliPay-Extend" do |ae| 
     ae.source_files = "AliPay-Extend"
     ae.subspec "Util" do |u|
       u.source_files = "AliPay-Extend/Util"
-    end 
-    ae.subspec "Order" do |o|
-      o.source_files = "AliPay-Extend/Order"
-    end
+    end  
   end
 
   s.subspec "openssl" do |ssl|
@@ -41,8 +38,8 @@ Pod::Spec.new do |s|
     ssl.header_dir = "openssl"
   end 
 
-  s.libraries = 'ssl', 'crypto', 'z','c++'
-  s.resource  = "Alixpay.bundle"
+  #s.libraries = 'ssl', 'crypto', 'z','c++'
+  s.resources = "AlipaySDK.bundle" 
   s.requires_arc = true #是否支持ARC
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"} 
 
