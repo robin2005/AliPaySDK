@@ -23,25 +23,26 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
 
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.2" }         #存储库的git地址，以及tag值
- 
-  s.ios.platform          = :ios, '8.0'
-  s.ios.deployment_target = '7.0'
+
+  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
+  #s.libraries  = 'ssl', 'crypto', 'z','c++' 
+
+  s.ios.deployment_target = '6.0'
   s.ios.source_files        = 'include-ios/openssl/**/*.h'
   s.ios.public_header_files = 'include-ios/openssl/**/*.h'
   s.ios.header_dir          = 'openssl'
   s.ios.preserve_paths      = 'lib-ios/libcrypto.a', 'lib-ios/libssl.a'
   s.ios.vendored_libraries  = 'lib-ios/libcrypto.a', 'lib-ios/libssl.a'
 
-  s.osx.platform          = :osx, '10.10'
-  s.osx.deployment_target = '10.6'
-  s.osx.source_files        = 'include-osx/openssl/**/*.h'
-  s.osx.public_header_files = 'include-osx/openssl/**/*.h'
+  s.osx.deployment_target = '10.8'
+  s.osx.source_files        = 'include-macos/openssl/**/*.h'
+  s.osx.public_header_files = 'include-macos/openssl/**/*.h'
   s.osx.header_dir          = 'openssl'
-  s.osx.preserve_paths      = 'lib-osx/libcrypto.a', 'lib-osx/libssl.a'
-  s.osx.vendored_libraries  = 'lib-osx/libcrypto.a', 'lib-osx/libssl.a'
+  s.osx.preserve_paths      = 'lib-macos/libcrypto.a', 'lib-macos/libssl.a'
+  s.osx.vendored_libraries  = 'lib-macos/libcrypto.a', 'lib-macos/libssl.a'
 
   s.libraries = 'ssl', 'crypto'
-
+ 
 
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}   
 
