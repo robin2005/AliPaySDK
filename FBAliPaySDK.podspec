@@ -34,6 +34,10 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'
   s.resources    = 'FBAliPaySDK/SDK/AlipaySDK.bundle'
   s.vendored_frameworks = 'FBAliPaySDK/SDK/AlipaySDK.framework'  
+  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
+  s.libraries  = 'ssl', 'crypto', 'z','c++'
+  s.ios.preserve_paths      = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
+  s.ios.vendored_libraries  = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
 
   s.pod_target_xcconfig = {
     'FRAMEWORK_SEARCH_PATHS' => '$(inherited)',
