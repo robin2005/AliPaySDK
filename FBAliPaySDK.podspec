@@ -25,8 +25,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.9" }         #存储库的git地址，以及tag值
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.libraries  = 'ssl', 'crypto', 'z','c++'
-
-  s.vendored_frameworks = 'AlipaySDK.framework'    
+ 
   s.default_subspec   = 'openssl'
 
   s.subspec "openssl" do |ssl|  
@@ -34,12 +33,13 @@ Pod::Spec.new do |s|
      ssl.header_dir          = 'openssl'
      ssl.preserve_paths      = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
      ssl.vendored_libraries  = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a' 
-     ssl.public_header_files = 'AliPay-Extend/openssl/**/*.h','AlipaySDK.framework/Headers/**/*.h' 
+     ssl.public_header_files = 'AliPay-Extend/openssl/**/*.h' 
   end
 
-  s.subspec "Order" do |order|
-    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}'
-    order.public_header_files = 'AliPay-Extend/*.h','AliPay-Extend/Util/**/*.h'
+  s.subspec "Order" do |order| 
+    order.resources    = 'AlipaySDK.bundle'
+    order.vendored_frameworks = 'AlipaySDK.framework' 
+    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}' 
     order.dependency 'FBAliPaySDK/openssl' 
   end
 
