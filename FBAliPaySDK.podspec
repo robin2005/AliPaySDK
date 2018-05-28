@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.default_subspec   = 'openssl'
 
   s.subspec "openssl" do |ssl|  
-     ssl.source_files        = 'AliPay-Extend/openssl/**/*.h','AliPay-Extend/**/*.{h,m}'
+     ssl.source_files        = 'AliPay-Extend/openssl/**/*.{h,m}'
      ssl.header_dir          = 'openssl'
      ssl.preserve_paths      = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
      ssl.vendored_libraries  = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a' 
@@ -37,10 +37,11 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Order" do |order|
-    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.h'
+    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}'
+    order.public_header_files = 'AliPay-Extend/*.h','AliPay-Extend/Util/**/*.h'
     order.dependency 'FBAliPaySDK/openssl' 
   end
-  
+
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK $(PODS_ROOT)/FBAliPaySDK/AliPay-Extend"}  
 
 end
