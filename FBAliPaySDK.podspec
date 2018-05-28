@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name              = "FBAliPaySDK"    #存储库名称
-  s.version           = "1.1.1"      #版本号，与tag值一致
+  s.version           = "1.1.2"      #版本号，与tag值一致
   s.summary           = "Alipay SDK for iOS. You can create alipay order or sign orders with `Order` subspec."
   s.homepage          = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
   s.license           = {
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.platform          = :ios, '7.0'
   s.requires_arc      = true
 
-  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.1" }         #存储库的git地址，以及tag值
+  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.2" }         #存储库的git地址，以及tag值
 
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.libraries  = 'ssl', 'crypto', 'z','c++'
@@ -30,18 +30,16 @@ Pod::Spec.new do |s|
   s.default_subspec   = 'openssl'
 
   s.subspec "openssl" do |ssl|  
-     ssl.source_files        = 'openssl/**/*.{h,m}'
      ssl.header_dir          = 'openssl'
+     ssl.source_files        = 'openssl/*.{h,m}'
      ssl.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
      ssl.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
-     ssl.public_header_files = 'openssl/**/*.h' 
+     ssl.public_header_files = 'openssl/*.h' 
   end
 
   s.subspec "DataSigner" do |signer| 
-    #order.resources    = 'AlipaySDK.bundle'
-    #order.vendored_frameworks = 'AlipaySDK.framework' 
-    signer.source_files = 'DataSigner/**/*.{h,m}'
-    signer.public_header_files = 'DataSigner/**/*.h'
+    signer.source_files = 'DataSigner/*.{h,m}'
+    signer.public_header_files = 'DataSigner/*.h'
     signer.dependency 'FBAliPaySDK/openssl' 
   end
 
@@ -49,6 +47,8 @@ Pod::Spec.new do |s|
 
 end
 
+    #order.resources    = 'AlipaySDK.bundle'
+    #order.vendored_frameworks = 'AlipaySDK.framework' 
  
   
  
