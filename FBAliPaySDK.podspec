@@ -30,23 +30,22 @@ Pod::Spec.new do |s|
   s.default_subspec   = 'openssl'
 
   s.subspec "openssl" do |ssl|  
-     ssl.source_files        = 'AliPay-Extend/openssl/**/*.{h,m}'
+     ssl.source_files        = 'openssl/**/*.{h,m}'
      ssl.header_dir          = 'openssl'
-     ssl.preserve_paths      = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
-     ssl.vendored_libraries  = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a' 
-     ssl.public_header_files = 'AliPay-Extend/openssl/**/*.h' 
+     ssl.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
+     ssl.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
+     ssl.public_header_files = 'openssl/**/*.h' 
   end
 
-  s.subspec "Order" do |order| 
+  s.subspec "DataSigner" do |signer| 
     #order.resources    = 'AlipaySDK.bundle'
     #order.vendored_frameworks = 'AlipaySDK.framework' 
-    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}'  
-    order.public_header_files = "AliPay-Extend/*.h",'AliPay-Extend/Util/**/*.h'  
-    order.dependency 'FBAliPaySDK/openssl' 
+    signer.source_files = 'DataSigner/**/*.{h,m}'
+    signer.public_header_files = 'DataSigner/**/*.h'
+    signer.dependency 'FBAliPaySDK/openssl' 
   end
 
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK $(PODS_ROOT)/FBAliPaySDK/AliPay-Extend"}  
-  s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}   
 
 end
 
