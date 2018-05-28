@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name              = "FBAliPaySDK"    #存储库名称
-  s.version           = "1.1.0"      #版本号，与tag值一致
+  s.version           = "1.1.1"      #版本号，与tag值一致
   s.summary           = "Alipay SDK for iOS. You can create alipay order or sign orders with `Order` subspec."
   s.homepage          = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
   s.license           = {
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.platform          = :ios, '7.0'
   s.requires_arc      = true
 
-  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.0" }         #存储库的git地址，以及tag值
+  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.1" }         #存储库的git地址，以及tag值
 
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.libraries  = 'ssl', 'crypto', 'z','c++'
@@ -46,6 +46,7 @@ Pod::Spec.new do |s|
   end
 
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK $(PODS_ROOT)/FBAliPaySDK/AliPay-Extend"}  
+  s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
 
 end
 
