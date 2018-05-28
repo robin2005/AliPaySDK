@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.libraries  = 'ssl', 'crypto', 'z','c++'
 
+  s.vendored_frameworks = 'AlipaySDK.framework'    
   s.default_subspec   = 'openssl'
 
   s.subspec "openssl" do |ssl|  
