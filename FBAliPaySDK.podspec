@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.libraries = 'ssl', 'crypto', 'z','c++'
   s.resources = "AlipaySDK.bundle" 
   s.requires_arc = true #是否支持ARC
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK $(PODS_ROOT)/FBAliPaySDK/AliPay-Extend"}  
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}  
 
 end
   
