@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
 
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.0.9" }         #存储库的git地址，以及tag值
-  
+
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
   s.libraries  = 'ssl', 'crypto', 'z','c++'
  
