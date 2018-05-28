@@ -38,13 +38,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Order" do |order| 
-    order.resources    = 'AlipaySDK.bundle'
-    order.vendored_frameworks = 'AlipaySDK.framework' 
-    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}' 
-    order.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
-    order.preserve_paths      = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a'
-    order.vendored_libraries  = 'AliPay-Extend/libcrypto.a', 'AliPay-Extend/libssl.a' 
-    order.libraries  = 'ssl', 'crypto', 'z','c++'
+    #order.resources    = 'AlipaySDK.bundle'
+    #order.vendored_frameworks = 'AlipaySDK.framework' 
+    order.source_files = "AliPay-Extend/*.{h,m}",'AliPay-Extend/Util/**/*.{h,m}'  
     order.dependency 'FBAliPaySDK/openssl' 
   end
 
