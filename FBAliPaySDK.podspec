@@ -25,24 +25,31 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.2" }         #存储库的git地址，以及tag值
 
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
-  #s.libraries  = 'ssl', 'crypto', 'z','c++' 
-
-  s.ios.deployment_target = '6.0'
-  s.ios.source_files        = 'include-ios/openssl/**/*.h'
-  s.ios.public_header_files = 'include-ios/openssl/**/*.h'
-  s.ios.header_dir          = 'openssl'
-  s.ios.preserve_paths      = 'lib-ios/libcrypto.a', 'lib-ios/libssl.a'
-  s.ios.vendored_libraries  = 'lib-ios/libcrypto.a', 'lib-ios/libssl.a'
-
-  s.osx.deployment_target = '10.8'
-  s.osx.source_files        = 'include-macos/openssl/**/*.h'
-  s.osx.public_header_files = 'include-macos/openssl/**/*.h'
-  s.osx.header_dir          = 'openssl'
-  s.osx.preserve_paths      = 'lib-macos/libcrypto.a', 'lib-macos/libssl.a'
-  s.osx.vendored_libraries  = 'lib-macos/libcrypto.a', 'lib-macos/libssl.a'
-
-  s.libraries = 'ssl', 'crypto'
+  s.libraries  = 'ssl', 'crypto', 'z','c++'
  
+  s.default_subspec   = 'openssl'
+
+  s.subspec "openssl" do |ssl|  
+     ssl.header_dir          = 'openssl'
+     ssl.source_files        = 'openssl/*.{h,m}'
+     ssl.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
+     ssl.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
+     ssl.public_header_files = 'openssl/*.h' 
+  end
+
+  s.subspec "DataSigner" do |signer| 
+    signer.source_files = 'DataSigner/*.{h,m}'
+    signer.public_header_files = 'DataSigner/*.h'
+    signer.dependency 'FBAliPaySDK/openssl' 
+  end
+
+  s.subspec "SDK" do |sdk| 
+    sdk.resources    = 'AlipaySDK.bundle'
+    sdk.vendored_frameworks = 'AlipaySDK.framework' 
+    sdk.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
+    sdk.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
+    sdk.dependency 'FBAliPaySDK/openssl' 
+  end
 
   s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}   
 
