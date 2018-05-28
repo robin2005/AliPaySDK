@@ -1,60 +1,57 @@
 #
-#  Be sure to run `pod spec lint FBAliPaySDK.podspec' to ensure this is a
-#  valid spec and to remove all comments including this before submitting the spec.
+# Be sure to run `pod lib lint FBAliPaySDK.podspec' to ensure this is a
+# valid spec before submitting.
 #
-#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
-#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 
 Pod::Spec.new do |s|
+  s.name             = 'FBAliPaySDK'
+  s.version          = '1.1.3'
+  s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
-  s.name              = "FBAliPaySDK"    #存储库名称
-  s.version           = "1.1.2"      #版本号，与tag值一致
-  s.summary           = "Alipay SDK for iOS. You can create alipay order or sign orders with `Order` subspec."
+# This description is used to generate tags and improve search results.
+#   * Think: What does it do? Why did you write it? What is the focus?
+#   * Try to keep it short, snappy and to the point.
+#   * Write the description between the DESC delimiters below.
+#   * Finally, don't worry about the indent, CocoaPods strips it!
+
+  s.description      = <<-DESC
+FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提取除 AlipaySDK.framework 和 AlipaySDK.bundle 之外的文件。
+                       DESC
+
   s.homepage          = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
-  s.license           = {
-    :type => 'Copyright',
-    :text => <<-LINCENSE
-      支付宝(中国)网络技术有限公司 ^? 版权所有.
-      LINCENSE
+  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { "AliPay" => "http://www.alipay.com/" }
+  s.source           = { :git => 'https://github.com/robin2005/AliPaySDK.git', :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+
+  s.platform     = :ios, "7.0"
+  s.ios.deployment_target = '7.0'
+
+  s.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'
+  s.resources    = 'FBAliPaySDK/SDK/AlipaySDK.bundle'
+  s.vendored_frameworks = 'FBAliPaySDK/SDK/AlipaySDK.framework'  
+
+  s.pod_target_xcconfig = {
+    'FRAMEWORK_SEARCH_PATHS' => '$(inherited)',
+    'OTHER_LDFLAGS'          => '$(inherited) -undefined dynamic_lookup'
   }
-  s.author            = { "AliPay" => "http://www.alipay.com/" }
-  s.platform          = :ios, '7.0'
-  s.requires_arc      = true
 
-  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "1.1.2" }         #存储库的git地址，以及tag值
-
-  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
-  s.libraries  = 'ssl', 'crypto', 'z','c++'
- 
-  s.default_subspec   = 'openssl'
-
-  s.subspec "openssl" do |ssl|  
-     ssl.header_dir          = 'openssl'
-     ssl.source_files        = 'openssl/*.{h,m}'
-     ssl.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
-     ssl.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
-     ssl.public_header_files = 'openssl/*.h' 
+  s.subspec 'Util' do |util|
+    util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'
+    util.dependency 'FBAliPaySDK/OpenSSL'
   end
-
-  s.subspec "DataSigner" do |signer| 
-    signer.source_files = 'DataSigner/*.{h,m}'
-    signer.public_header_files = 'DataSigner/*.h'
-    signer.dependency 'FBAliPaySDK/openssl' 
+  
+  s.subspec 'OpenSSL' do |openssl|
+    openssl.source_files = 'FBAliPaySDK/Openssl/**/*.h'
+    openssl.public_header_files = 'FBAliPaySDK/Openssl/**/*.h'
+    openssl.ios.preserve_paths      = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
+    openssl.ios.vendored_libraries  = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
+    openssl.libraries = 'ssl', 'crypto'
+    openssl.xcconfig = { 'HEADER_SEARCH_PATHS' => "${PODS_ROOT}/#{s.name}/FBAliPaySDK/Openssl/**" }
   end
-
-  s.subspec "SDK" do |sdk| 
-    sdk.resources    = 'AlipaySDK.bundle'
-    sdk.vendored_frameworks = 'AlipaySDK.framework' 
-    sdk.preserve_paths      = 'lib/libcrypto.a', 'lib/libssl.a'
-    sdk.vendored_libraries  = 'lib/libcrypto.a', 'lib/libssl.a' 
-    sdk.dependency 'FBAliPaySDK/openssl' 
-  end
-
-  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/FBAliPaySDK"}   
 
 end
- 
- 
-  
- 
