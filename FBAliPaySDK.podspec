@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FBAliPaySDK'
-  s.version          = '1.1.5'
+  s.version          = '1.1.6'
   s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
 # This description is used to generate tags and improve search results.
@@ -42,9 +42,16 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
 
   s.resources    = 'AlipaySDK.bundle'  
 
-  s.source_files = 'FBAliPaySDK/Util/**/*.{h,m}' ,'FBAliPaySDK/Classes/**/*.{h,m}'
 
-  s.public_header_files = 'FBAliPaySDK/Util/**/*.h' ,'FBAliPaySDK/Classes/**/*.h'
+  s.default_subspec   = 'Util'
+
+  s.subspec "Util" do |util|   
+
+     util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}' ,'FBAliPaySDK/Classes/**/*.{h,m}' 
+     util.ios.vendored_frameworks = 'FBAliPaySDK/StaticLibrary/openssl.framework'
+     util.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/#{s.name}/FBAliPaySDK/StaticLibrary' } 
+
+  end
   
   s.subspec "JSON" do |json|  
 
