@@ -42,20 +42,23 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.pod_target_xcconfig = {
     'FRAMEWORK_SEARCH_PATHS' => '$(inherited)',
     'OTHER_LDFLAGS'          => '$(inherited) -undefined dynamic_lookup'
-  }
+  } 
 
-  s.subspec 'Util' do |util|
-    util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'
-    util.dependency 'FBAliPaySDK/OpenSSL'
-  end
+  # s.subspec 'Util' do |util|
+   # util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'
+      #util.xcconfig = { 'HEADER_SEARCH_PATHS' => "$(SRCROOT)//#{s.name}/FBAliPaySDK/Openssl/**",
+     #'Library_SEARCH_PATHS' => "$(SRCROOT)//#{s.name}/FBAliPaySDK/Openssl/**"  }
+     #util.dependency 'FBAliPaySDK/OpenSSL'
+  # end
   
   s.subspec 'OpenSSL' do |openssl|
     openssl.source_files = 'FBAliPaySDK/Openssl/**/*.h'
+    openssl.header_dir          = 'openssl'
     openssl.public_header_files = 'FBAliPaySDK/Openssl/**/*.h'
     openssl.ios.preserve_paths      = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
     openssl.ios.vendored_libraries  = 'FBAliPaySDK/StaticLibrary/libcrypto.a', 'FBAliPaySDK/StaticLibrary/libssl.a'
     openssl.libraries = 'ssl', 'crypto'
-    openssl.xcconfig = { 'HEADER_SEARCH_PATHS' => "${PODS_ROOT}/#{s.name}/FBAliPaySDK/Openssl/**" }
+    openssl.xcconfig = { 'HEADER_SEARCH_PATHS' => "${PODS_ROOT}/#{s.name}/FBAliPaySDK/Openssl/**",'Library_SEARCH_PATHS' => "$(SRCROOT)/#{s.name}/FBAliPaySDK/Openssl/**" }
   end
 
 end
