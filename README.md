@@ -13,8 +13,8 @@ FBAliPaySDK
 
 ``` pod 'FBAliPaySDK' ```
 
-或只安装带JSON功能
-pod 'FBAliPaySDK', :subspecs => ['JSON']
+或安装带JSON功能
+pod 'FBAliPaySDK', :subspecs => ['Util','JSON']
 
 > TIPS:
 > 
