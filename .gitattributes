@@ -1,4 +1,2 @@
-*.h linguist-language=object-c 
-*.m linguist-language=object-c 
-*.framework linguist-language=object-c 
-*.bundle linguist-language=object-c 
+*.h linguist-language=Objective-C
+*.m linguist-language=Objective-C
