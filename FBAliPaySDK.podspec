@@ -42,7 +42,25 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
 
   s.resources    = 'AlipaySDK.bundle'  
 
-  s.source_files = 'FBAliPaySDK/Util/**/*.{h,m}' 
+  s.default_subspec   = 'Util'
+
+  s.subspec "Util" do |util|  
+
+     util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}' ,'FBAliPaySDK/Classes/**/*.{h,m}'
+
+     util.public_header_files = 'FBAliPaySDK/Util/**/*.h' ,'FBAliPaySDK/Classes/**/*.h'
+
+  end
  
+ 
+  s.subspec "JSON" do |json|  
+
+    json.source_files =  'FBAliPaySDK/JSON/**/*.{h,m}' 
+
+    json.public_header_files = 'FBAliPaySDK/JSON/**/*.h' 
+    
+    json.dependency 'FBAliPaySDK/Util' 
+
+  end
 
 end
