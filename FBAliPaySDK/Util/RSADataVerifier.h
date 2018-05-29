@@ -1,19 +1,18 @@
 //
 //  RSADataVerifier.h
-//  AliSDKDemo
+//  SafepayService
 //
-//  Created by 亦澄 on 16-8-12.
-//  Copyright (c) 2016年 Alipay. All rights reserved.
+//  Created by wenbi on 11-4-11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "DataVerifier.h"
 
-@interface RSADataVerifier : NSObject {
+@interface RSADataVerifier : NSObject <DataVerifier> {
 	NSString *_publicKey;
 }
 
 - (id)initWithPublicKey:(NSString *)publicKey;
-
-- (BOOL)verifyString:(NSString *)string withSign:(NSString *)signString withRSA2:(BOOL)rsa2;
 
 @end

@@ -1,15 +1,14 @@
 //
 //  RSADataSigner.m
-//  AliSDKDemo
+//  SafepayService
 //
-//  Created by 亦澄 on 16-8-12.
-//  Copyright (c) 2016年 Alipay. All rights reserved.
+//  Created by wenbi on 11-4-11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "RSADataSigner.h"
 #import "openssl_wrapper.h"
 #import "NSDataEx.h"
-
 
 @implementation RSADataSigner
 
@@ -27,9 +26,10 @@
     return encodedString;
 }
 
+
 - (NSString *)formatPrivateKey:(NSString *)privateKey {
     const char *pstr = [privateKey UTF8String];
-    int len = (int)[privateKey length];
+    int len = [privateKey length];
     NSMutableString *result = [NSMutableString string];
     [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
     int index = 0;
@@ -52,8 +52,12 @@
     return result;
 }
 
+- (NSString *)algorithmName {
+	return @"RSA";
+}
+
 //该签名方法仅供参考,外部商户可用自己方法替换
-- (NSString *)signString:(NSString *)string  withRSA2:(BOOL)rsa2 {
+- (NSString *)signString:(NSString *)string {
 	
 	//在Document文件夹下创建私钥文件
 	NSString * signedString = nil;
@@ -67,10 +71,10 @@
 	[formatKey writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 	
 	const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    int messageLength = (int)strlen(message);
+    int messageLength = strlen(message);
     unsigned char *sig = (unsigned char *)malloc(256);
 	unsigned int sig_len;
-    int ret = rsa_sign_with_private_key_pem((char *)message, messageLength, sig, &sig_len, (char *)[path UTF8String], rsa2);
+    int ret = rsa_sign_with_private_key_pem((char *)message, messageLength, sig, &sig_len, (char *)[path UTF8String]);
 	//签名成功,需要给签名字符串base64编码和UrlEncode,该两个方法也可以根据情况替换为自己函数
     if (ret == 1) {
         NSString * base64String = base64StringFromData([NSData dataWithBytes:sig length:sig_len]);

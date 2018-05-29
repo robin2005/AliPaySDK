@@ -1,19 +1,18 @@
 //
 //  RSADataSigner.h
-//  AliSDKDemo
+//  SafepayService
 //
-//  Created by 亦澄 on 16-8-12.
-//  Copyright (c) 2016年 Alipay. All rights reserved.
+//  Created by wenbi on 11-4-11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "DataSigner.h"
 
-@interface RSADataSigner : NSObject {
+@interface RSADataSigner : NSObject <DataSigner> {
 	NSString * _privateKey;
 }
 
 - (id)initWithPrivateKey:(NSString *)privateKey;
-
-- (NSString *)signString:(NSString *)string withRSA2:(BOOL)rsa2;
 
 @end
