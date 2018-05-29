@@ -29,25 +29,20 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, "7.0"
+  
   s.ios.deployment_target = '7.0'
 
   s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
-  s.libraries  =  'z','c++' 
-  #s.default_subspec   = 'Util' 
-  s.ios.vendored_frameworks = 'FBAliPaySDK/StaticLibrary/openssl.framework' 
+
+  s.libraries  =  'z','c++'  
+
+  s.ios.vendored_frameworks = 'FBAliPaySDK/StaticLibrary/openssl.framework','AlipaySDK.framework'
+
   s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/#{s.name}/FBAliPaySDK/StaticLibrary' } 
 
-   #s.subspec 'Util' do |util|
-     #util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
-  # end
-  
+  s.resources    = 'AlipaySDK.bundle'  
 
-  # s.subspec "SDK" do |sdk| 
-   #  sdk.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}' 
-   #  sdk.resources    = 'AlipaySDK.bundle'
-   #  sdk.vendored_frameworks = 'AlipaySDK.framework'  
-    # sdk.dependency 'FBAliPaySDK/openssl' 
-  # end
-
+  s.source_files = 'FBAliPaySDK/Util/**/*.{h,m}' 
+ 
 
 end
