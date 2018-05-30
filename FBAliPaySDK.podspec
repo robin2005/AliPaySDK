@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FBAliPaySDK'
-  s.version          = '1.1.9'
+  s.version          = '1.2.0'
   s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
 # This description is used to generate tags and improve search results.
@@ -57,5 +57,7 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
     json.source_files =  'FBAliPaySDK/JSON/**/*.{h,m}'   
 
   end
+
+  s.requires_arc = true
 
 end
