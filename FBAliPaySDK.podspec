@@ -48,7 +48,7 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
 
      util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
      util.vendored_frameworks = 'FBAliPaySDK/StaticLibrary/openssl.framework' 
-     util.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/#{s.name}/FBAliPaySDK/StaticLibrary' }  
+     #util.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/#{s.name}/FBAliPaySDK/StaticLibrary' }  
 
   end
   
