@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FBAliPaySDK'
-  s.version          = '1.2.3'
+  s.version          = '1.2.4'
   s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
 # This description is used to generate tags and improve search results.
@@ -27,27 +27,22 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.author           = { "AliPay" => "http://www.alipay.com/" } 
 
   s.platform     = :ios, "8.0" 
-  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "#{s.version}" }  
-  s.resources = 'AlipaySDK.bundle'    
-  s.frameworks = "Foundation", "UIKit", "SystemConfiguration", "CoreTelephony", "QuartzCore", "CoreText", "CoreGraphics", "CFNetwork", "CoreMotion"
-  s.libraries  =  'z','c++'   
-  s.requires_arc = true 
-  s.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}' 
-  s.vendored_frameworks = 'AlipaySDK.framework'
-  s.resources = 'AlipaySDK.bundle'    
+  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "#{s.version}" }   
+  s.frameworks = "Foundation", "UIKit", "SystemConfiguration", "CoreTelephony", "QuartzCore", "CoreText", "CoreGraphics", "CFNetwork", "CoreMotion" 
+  s.libraries  =  'z','c++'
+  s.requires_arc = true   
 
-
-  s.subspec "Util" do |util|   
-
-      util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
-      util.dependency 'GRKOpenSSLFramework'  
-
-  end 
-  
-  s.subspec "JSON" do |json|  
-
-    json.source_files =  'FBAliPaySDK/JSON/**/*.{h,m}'   
-
+  s.subspec 'Core' do |core|
+    core.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'  
   end
+
+  s.subspec "JSON" do |json|   
+    json.dependency 'FBJSON' 
+  end
+ 
+  s.subspec "Util" do |util|    
+      util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
+      util.dependency 'GRKOpenSSLFramework'   
+  end  
 
 end
