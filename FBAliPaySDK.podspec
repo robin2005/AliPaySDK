@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FBAliPaySDK'
-  s.version          = '1.2.2'
+  s.version          = '1.2.3'
   s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
 # This description is used to generate tags and improve search results.
@@ -31,18 +31,18 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.resources = 'AlipaySDK.bundle'    
   s.frameworks = "Foundation", "UIKit", "SystemConfiguration", "CoreTelephony", "QuartzCore", "CoreText", "CoreGraphics", "CFNetwork", "CoreMotion"
   s.libraries  =  'z','c++'   
-  s.requires_arc = true
-  s.vendored_frameworks = 'AlipaySDK.framework','FBAliPaySDK/StaticLibrary/openssl.framework' 
-  s.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'   
-  #s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/FBAliPaySDK/FBAliPaySDK/StaticLibrary' }    
+  s.requires_arc = true 
+  s.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}' 
+  s.vendored_frameworks = 'AlipaySDK.framework'
+  s.resources = 'AlipaySDK.bundle'    
 
-  s.subspec "Order" do |order|   
 
-      order.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'  
+  s.subspec "Util" do |util|   
 
-  end
+      util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
+      util.dependency 'GRKOpenSSLFramework'  
 
- 
+  end 
   
   s.subspec "JSON" do |json|  
 
