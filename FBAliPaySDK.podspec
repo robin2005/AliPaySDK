@@ -21,27 +21,29 @@ Pod::Spec.new do |s|
 FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提取除 AlipaySDK.framework 和 AlipaySDK.bundle 之外的文件。
                        DESC
 
-  s.homepage          = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址 
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "AliPay" => "http://www.alipay.com/" } 
 
   s.platform     = :ios, "8.0" 
   s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "#{s.version}" }    
-  s.requires_arc = true    
+  s.requires_arc = true   
 
-
-  s.subspec 'Core' do |core|
-    core.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'     
-    core.dependency 'FBAliPay'  
-    core.pod_target_xcconfig = {
-        'FRAMEWORK_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/FBAliPaySDK',
-        'OTHER_LDFLAGS'          => '$(inherited) -undefined dynamic_lookup'
-    } 
-  end 
-  
-  s.subspec "JSON" do |json|   
-    json.dependency 'FBJSON' 
+  s.subspec 'SDK' do |sdk|
+      sdk.dependency 'FBAliPay'  
   end
+
+  s.subspec "JSON" do |json|   
+      json.dependency 'FBJSON' 
+  end
+
+  s.subspec 'Order' do |order|
+      order.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'   
+  end  
+
+  s.subspec "Util" do |util|    
+      util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
+      util.dependency 'GRKOpenSSLFramework'   
+  end  
 
 end
