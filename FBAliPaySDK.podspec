@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FBAliPaySDK'
-  s.version          = '1.2.1'
+  s.version          = '1.2.2'
   s.summary          = 'FBAliPaySDK 是 AlipaySDK 的帮助类库。'
 
 # This description is used to generate tags and improve search results.
@@ -27,7 +27,7 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.author           = { "AliPay" => "http://www.alipay.com/" } 
 
   s.platform     = :ios, "8.0" 
-  s.source       = { :git => "https://github.com/robin2005/AlipaySDk.git", :tag => "#{s.version}" }  
+  s.source       = { :git => "https://github.com/robin2005/AliPaySDK.git", :tag => "#{s.version}" }  
   s.resources = 'AlipaySDK.bundle'    
   s.frameworks = "Foundation", "UIKit", "SystemConfiguration", "CoreTelephony", "QuartzCore", "CoreText", "CoreGraphics", "CFNetwork", "CoreMotion"
   s.libraries  =  'z','c++'   
