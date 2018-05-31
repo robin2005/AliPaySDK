@@ -24,40 +24,30 @@ FBAliPaySDK 是 AlipaySDK 的帮助类库。它从 AlipaySDK 官方 Demo 中提�
   s.homepage          = "https://github.com/robin2005/AliPaySDK"      #项目主页，不是git地址
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { "AliPay" => "http://www.alipay.com/" }
-  s.source           = { :git => 'https://github.com/robin2005/AliPaySDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "AliPay" => "http://www.alipay.com/" } 
 
-  s.platform     = :ios, "7.0"
-  
-  s.ios.deployment_target = '7.0'
+  s.platform     = :ios, "8.0" 
+  s.source       = { :git => "https://github.com/robin2005/AlipaySDk.git", :tag => "#{s.version}" }  
+  s.resources = 'AlipaySDK.bundle'    
+  s.frameworks = "Foundation", "UIKit", "SystemConfiguration", "CoreTelephony", "QuartzCore", "CoreText", "CoreGraphics", "CFNetwork", "CoreMotion"
+  s.libraries  =  'z','c++'   
+  s.requires_arc = true
+  s.vendored_frameworks = 'AlipaySDK.framework','FBAliPaySDK/StaticLibrary/openssl.framework' 
+  s.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'   
+  #s.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/FBAliPaySDK/FBAliPaySDK/StaticLibrary' }    
 
-  s.frameworks = "UIKit", "Foundation", "CoreTelephony", "Security", "QuartzCore", "CoreText", "CoreMotion", "CFNetwork", "CoreGraphics", "SystemConfiguration" 
+  s.subspec "Order" do |order|   
 
-  s.libraries  =  'z','c++'  
-
-  s.vendored_frameworks = 'AlipaySDK.framework'  
-
-  s.resources    = 'AlipaySDK.bundle'  
-
-  s.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'    
-
-  s.public_header_files = 'FBAliPaySDK/Classes/*.h'
-
-  s.subspec "Util" do |util|   
-
-     util.source_files = 'FBAliPaySDK/Util/**/*.{h,m}'  
-     util.vendored_frameworks = 'FBAliPaySDK/StaticLibrary/openssl.framework' 
-     #util.user_target_xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(SRCROOT)/#{s.name}/FBAliPaySDK/StaticLibrary' }  
+      order.source_files = 'FBAliPaySDK/Classes/**/*.{h,m}'  
 
   end
+
+ 
   
   s.subspec "JSON" do |json|  
 
     json.source_files =  'FBAliPaySDK/JSON/**/*.{h,m}'   
 
   end
-
-  s.requires_arc = true
 
 end
