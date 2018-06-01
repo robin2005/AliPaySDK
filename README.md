@@ -14,8 +14,9 @@ FBAliPaySDK
 安装支付宝SDK
 ``` pod 'FBAliPay' ```
 
-安装带(签名与JSON、订单)N功能
-pod 'FBAliPaySDK', :subspecs => ['JSON', 'Order', 'Util']
+安装带(签名与JSON、订单)功能
+
+``` pod 'FBAliPaySDK', :subspecs => ['JSON', 'Order', 'Util'] ```
 
 > TIPS:
 > 
